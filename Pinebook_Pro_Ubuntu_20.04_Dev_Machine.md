@@ -313,19 +313,19 @@ sudo apt install pulseaudio-module-bluetooth
 sudo apt install acpid
 ```
 
-Fix headphone/speaker sound
+Fix headphone/speaker sound with some acpi magic
 
 ```bash  
-git clone https://gitlab.manjaro.org/manjaro-arm/packages/community/pinebookpro-audi  o.git
+git clone https://gitlab.manjaro.org/manjaro-arm/packages/community/pinebookpro-audio.git
 cd pinebookpro-audio
 cat > install.sh << EOF
 #!/usr/bin/env bash
 export srcdir=$(pwd)
 export pkgdir=""
-  
+
 source PKGBUILD
 source pinebookpro-audio.install
-  
+
 package
 post_upgrade
 
