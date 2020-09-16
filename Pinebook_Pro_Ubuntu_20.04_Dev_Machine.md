@@ -297,23 +297,19 @@ unmute `Left Headphone Mixer Left DAC` and `Right Headphone Mixer Right DAC`
 alsamixer
 ```
 
-Open a terminal. (The quickest way is the Ctrl-Alt-T shortcut.)
-Type "alsamixer" and press the Enter key.
-You will now see a user interface. In this user interface, you can do the following:
-
-- Select your correct sound card using F6 and select F5 to see recording controls as well
-- Move around with left and right arrow keys.
-- Increase and decrease volume with up and down arrow keys.
-- Increase and decrease volume for left/right channel individually with "Q", "E", "Z", and "C" keys.
-- Mute/Unmute with the "M" key. An "MM" means muted, and "OO" means unmuted. Note that a bar can be 100% full but still be muted, so do check for this.
-- Exit from alsamixer with the Esc key.
+- Select your correct sound card using **F6**.
+- Use the `left` and `right` arrow keys for navigation.
+- Increase and decrease volume with `up` and `down` arrow keys.
+- Increase and decrease volume for left/right channel individually with `q`, `e`, `z`, and `c` keys.
+- **Mute/Unmute** with the `M` key. An `MM` means muted, and `OO` means unmuted. **Note** that a bar can be 100% full and the channel still be muted.
+- Exit from `alsamixer` using **Esc** key.
 
 ```bash
 sudo apt install pulseaudio-module-bluetooth
 sudo apt install acpid
 ```
 
-Fix headphone/speaker sound with some acpi magic
+Fix headphone/speaker sound with some acpid magic. **Note** read the source before installing.
 
 ```bash  
 git clone https://gitlab.manjaro.org/manjaro-arm/packages/community/pinebookpro-audio.git
@@ -330,8 +326,12 @@ package
 post_upgrade
 
 EOF
+```
 
-chod +x install.sh
+Install using the script.
+
+```bash
+chmod +x install.sh
 sudo ./install.sh
 ```
 
