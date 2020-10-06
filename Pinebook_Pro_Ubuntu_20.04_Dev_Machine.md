@@ -79,13 +79,14 @@ sudo apt install nautilus gnome-tweaks
 ## GO
 
 ```bash
-export GOVERSION=1.14.6
-curl -kLO https://dl.google.com/go/go${GOVERSION}.linux-arm64.tar.gz
+export GOVERSION=1.15.2
+export GOARCH=arm64
+curl -kLO https://dl.google.com/go/go${GOVERSION}.linux-${GOARCH}.tar.gz
 sudo rm -rfv /usr/local/go
-sudo tar -C /usr/local/ -xvzf go${GOVERSION}.linux-arm64.tar.gz
+sudo tar -C /usr/local/ -xvzf go${GOVERSION}.linux-${GOARCH}.tar.gz
 export PATH=/usr/local/go/bin:$PATH
 go version
-rm -v go${GOVERSION}.linux-arm64.tar.gz
+rm -v go${GOVERSION}.linux-${GOARCH}.tar.gz
 
 mkdir -p ~/go/{src,bin}
 
@@ -96,14 +97,26 @@ export PATH=\$PATH:/usr/local/go/bin:\$GOPATH/bin
 
 EOF
 
-go get github.com/oklog/ulid/cmd/ulid
-go get -u golang.org/x/tools/...
-go get -u golang.org/x/lint/golint
-curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.27.0
+go get -u -v github.com/oklog/ulid/v2/cmd/ulid
 
+go get -u -v golang.org/x/tools/...
+go get -u -v golang.org/x/tools/cmd/goimports
+go get -u -v golang.org/x/lint/golint
+go get -u -v github.com/fzipp/gocyclo
+go get -u -v github.com/uudashr/gocognit/cmd/gocognit
+go get -u -v github.com/go-critic/go-critic/cmd/gocritic
+go get -u -v github.com/wadey/gocovmerge
+go get -u -v github.com/axw/gocov/gocov
+go get -u -v github.com/AlekSi/gocov-xml
+go get -u -v github.com/tebeka/go2xunit
+go get -u -v github.com/go-bindata/go-bindata/...
+go get -u -v github.com/josephspurrier/goversioninfo/cmd/goversioninfo
+go get -u -v github.com/golang/protobuf/protoc-gen-go
 ## Most people don't need go-critic as it comes with golangci-lint
 ## I probably don't really need it locally either...
 go get -v -u github.com/go-critic/go-critic/cmd/gocritic
+
+curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.31.0
 
 ```
 
@@ -311,7 +324,7 @@ sudo apt install acpid
 
 Fix headphone/speaker sound with some acpid magic. **Note** read the source before installing.
 
-```bash  
+```bash
 git clone https://gitlab.manjaro.org/manjaro-arm/packages/community/pinebookpro-audio.git
 cd pinebookpro-audio
 cat > install.sh << EOF

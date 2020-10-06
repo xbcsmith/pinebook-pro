@@ -21,4 +21,3 @@ echo "Terminal=false" >> "${pkgdir}/atom.desktop"
 
 echo "sudo cp atom_256.png /usr/local/share/icons/atom.png"
 echo "sudo cp atom.desktop /usr/local/share/applications/atom.desktop"
-
