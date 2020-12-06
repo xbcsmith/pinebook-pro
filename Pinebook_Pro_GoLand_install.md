@@ -60,9 +60,11 @@ Start IDE
 JAVA_HOME=~/GoLand-2020.2EAP/jbr ~/GoLand-2020.2EAP/bin/goland.sh &
 ```
 
-Since this is the first time we are starting the IDE, we need to do a bit of configuration before creating a project.
+Since this is the first time we are starting the IDE, we need to do a bit of
+configuration before creating a project.
 
-Click on the Configure button, then select the Edit Custom Properties action, add the following line, then restart the IDE:
+Click on the Configure button, then select the Edit Custom Properties action,
+add the following line, then restart the IDE:
 
 ```text
 idea.filewatcher.executable.path=fsnotifier-aarch64

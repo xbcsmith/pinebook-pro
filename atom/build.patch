@@ -1,0 +1,23 @@
+--- a/node_modules/github/package.json
++++ b/node_modules/github/package.json
+@@ -157,10 +157,10 @@
+   "dependencies": {
+     "@atom/babel-plugin-chai-assert-async": "1.0.0",
+     "@atom/babel7-transpiler": "1.0.0-1",
+-    "@babel/generator": "7.8.0",
++    "@babel/generator": "7.8.7",
+     "@babel/plugin-proposal-class-properties": "7.8.0",
+     "@babel/plugin-proposal-object-rest-spread": "7.8.0",
+-    "@babel/preset-env": "7.8.2",
++    "@babel/preset-env": "7.8.7",
+     "@babel/preset-react": "7.8.0",
+     "babel-plugin-relay": "5.0.0",
+     "bintrees": "1.0.2",
+@@ -207,6 +207,7 @@
+   },
+   "devDependencies": {
+     "@atom/mocha-test-runner": "1.6.0",
++    "@babel/compat-data": "~7.8.0",
+     "babel-plugin-istanbul": "5.2.0",
+     "chai": "4.2.0",
+     "chai-as-promised": "7.1.1",

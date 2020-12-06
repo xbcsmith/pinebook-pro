@@ -4,11 +4,7 @@
 
 I really want pure arm64 so going to install it instead of armhf.
 
-So I am going to  try the minimal bionic image for the rockpro64
-
-
-## Start
-
+So I am going to try the minimal bionic image for the rockpro64
 
 grab the minimal bionic image for the rockpro64
 
@@ -22,7 +18,6 @@ Install to EMMC
 xzcat bionic-minimal-rockpro64-0.9.16-1163-arm64.img.xz | sudo dd bs=4M of=/dev/mmcblk1 iflag=fullblock oflag=direct status=progress
 ```
 
-
 ## Setup Wireless
 
 ```bash
@@ -32,12 +27,11 @@ nmcli d wifi list
 nmcli d wifi connect <ID> password *********
 ```
 
-
 ## EDITOR
 
 ### Always vim
 
-```
+```bash
 sudo update-alternatives --config editor
 ```
 
@@ -76,7 +70,7 @@ sudo mv /etc/apt/trusted.gpg.d/ayufan.key.chroot.gpg .
 sudo apt update
 sudo apt upgrade
 ```
- 
+
 ## Install Vanilla Gnome 3
 
 ```bash
@@ -88,7 +82,7 @@ sudo update-alternatives --config gdm3.css
 
 ## GO
 
-```
+```bash
 sudo add-apt-repository ppa:longsleep/golang-backports
 sudo apt-get update
 sudo apt-get install golang-go
@@ -96,11 +90,10 @@ sudo apt-get install golang-go
 
 ## Rust
 
-```
+```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source $HOME/.cargo/env
 ```
-
 
 ## Dev tools
 
@@ -112,7 +105,7 @@ sudo apt install retext gedit
 
 ## Build Tools
 
-```bash 
+```bash
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test
 sudo apt update
 sudo apt install gcc-5 g++-5 build-essential git libsecret-1-dev fakeroot rpm libx11-dev libxkbfile-dev
@@ -152,7 +145,6 @@ sed -i 's~dockerd -H fd://~dockerd~g' /lib/systemd/system/docker.service
 sed -i 's~StartLimitInterval=60s~StartLimitInterval=60s\nIPForward=yes\n~g' /lib/systemd/system/docker.service
 ```
 
-
 ```bash
 sudo groupadd docker
 sudo usermod -aG docker $USER
@@ -164,8 +156,6 @@ sudo systemctl start docker.service
 ```bash
 docker run --rm -it hello-world
 ```
-
-
 
 ## Python
 
@@ -196,16 +186,13 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 sudo apt install nodejs yarn
 ```
 
-
 ## Atom
 
 ### Not Working
 
-https://flight-manual.atom.io/hacking-atom/sections/hacking-on-atom-core/#platform-linux
+<https://flight-manual.atom.io/hacking-atom/sections/hacking-on-atom-core/#platform-linux>
 
 ```bash
 mkdir -p git/github.com/atom
 git clone https://github.com/atom/atom.git
 ```
-
-

@@ -1,0 +1,188 @@
+diff --git a/package.json b/package.json
+index 38aed1d4f..604c879c2 100644
+--- a/package.json
++++ b/package.json
+@@ -164,7 +164,7 @@
+     "tree-view": "https://www.atom.io/api/packages/tree-view/versions/0.228.0/tarball",
+     "typescript-simple": "1.0.0",
+     "update-package-dependencies": "file:./packages/update-package-dependencies",
+-    "vscode-ripgrep": "^1.2.5",
++    "vscode-ripgrep": "1.5.8",
+     "welcome": "file:packages/welcome",
+     "whitespace": "https://www.atom.io/api/packages/whitespace/versions/0.37.7/tarball",
+     "winreg": "^1.2.1",
+diff --git a/script/package.json b/script/package.json
+index e7df5f46e..f9c2b2871 100644
+--- a/script/package.json
++++ b/script/package.json
+@@ -11,7 +11,7 @@
+     "colors": "1.1.2",
+     "donna": "1.0.16",
+     "electron-chromedriver": "^5.0.0",
+-    "electron-link": "0.4.1",
++    "electron-link": "0.4.2",
+     "electron-mksnapshot": "^5.0.0",
+     "electron-packager": "12.2.0",
+     "@atom/electron-winstaller": "0.0.1",
+@@ -23,7 +23,7 @@
+     "eslint-plugin-prettier": "^3.0.1",
+     "eslint-plugin-promise": "^4.1.1",
+     "eslint-plugin-standard": "^4.0.0",
+-    "fs-admin": "^0.12.0",
++    "fs-admin": "^0.13.0",
+     "fs-extra": "0.30.0",
+     "glob": "7.0.3",
+     "joanna": "0.0.10",
+@@ -31,7 +31,7 @@
+     "legal-eagle": "0.14.0",
+     "lodash.startcase": "4.4.0",
+     "lodash.template": "4.5.0",
+-    "minidump": "0.9.0",
++    "minidump": "0.19.0",
+     "mkdirp": "0.5.1",
+     "normalize-package-data": "2.3.5",
+     "npm": "6.14.4",
+diff --git a/script/lib/generate-startup-snapshot.js b/script/lib/generate-startup-snapshot.js
+index a5a3d4c8b..b0b160e05 100644
+--- a/script/lib/generate-startup-snapshot.js
++++ b/script/lib/generate-startup-snapshot.js
+@@ -271,72 +266,72 @@ module.exports = function(packagedAppPath) {
+     process.stdout.write('\n');
+     fs.writeFileSync(snapshotScriptPath, minification.code);
+ 
+-    console.log('Verifying if snapshot can be executed via `mksnapshot`');
+-    const verifySnapshotScriptPath = path.join(
+-      CONFIG.repositoryRootPath,
+-      'script',
+-      'verify-snapshot-script'
+-    );
+-    let nodeBundledInElectronPath;
+-    if (process.platform === 'darwin') {
+-      nodeBundledInElectronPath = path.join(
+-        packagedAppPath,
+-        'Contents',
+-        'MacOS',
+-        CONFIG.executableName
+-      );
+-    } else {
+-      nodeBundledInElectronPath = path.join(
+-        packagedAppPath,
+-        CONFIG.executableName
+-      );
+-    }
+-    childProcess.execFileSync(
+-      nodeBundledInElectronPath,
+-      [verifySnapshotScriptPath, snapshotScriptPath],
+-      { env: Object.assign({}, process.env, { ELECTRON_RUN_AS_NODE: 1 }) }
+-    );
+-
+-    console.log('Generating startup blob with mksnapshot');
+-    childProcess.spawnSync(process.execPath, [
+-      path.join(
+-        CONFIG.repositoryRootPath,
+-        'script',
+-        'node_modules',
+-        'electron-mksnapshot',
+-        'mksnapshot.js'
+-      ),
+-      snapshotScriptPath,
+-      '--output_dir',
+-      CONFIG.buildOutputPath
+-    ]);
+-
+-    let startupBlobDestinationPath;
+-    if (process.platform === 'darwin') {
+-      startupBlobDestinationPath = `${packagedAppPath}/Contents/Frameworks/Electron Framework.framework/Resources`;
+-    } else {
+-      startupBlobDestinationPath = packagedAppPath;
+-    }
+-
+-    const snapshotBinaries = ['v8_context_snapshot.bin', 'snapshot_blob.bin'];
+-    for (let snapshotBinary of snapshotBinaries) {
+-      const destinationPath = path.join(
+-        startupBlobDestinationPath,
+-        snapshotBinary
+-      );
+-      console.log(`Moving generated startup blob into "${destinationPath}"`);
+-      try {
+-        fs.unlinkSync(destinationPath);
+-      } catch (err) {
+-        // Doesn't matter if the file doesn't exist already
+-        if (!err.code || err.code !== 'ENOENT') {
+-          throw err;
+-        }
+-      }
+-      fs.renameSync(
+-        path.join(CONFIG.buildOutputPath, snapshotBinary),
+-        destinationPath
+-      );
+-    }
++//     console.log('Verifying if snapshot can be executed via `mksnapshot`');
++//     const verifySnapshotScriptPath = path.join(
++//       CONFIG.repositoryRootPath,
++//       'script',
++//       'verify-snapshot-script'
++//     );
++//     let nodeBundledInElectronPath;
++//     if (process.platform === 'darwin') {
++//       nodeBundledInElectronPath = path.join(
++//         packagedAppPath,
++//         'Contents',
++//         'MacOS',
++//         CONFIG.executableName
++//       );
++//     } else {
++//       nodeBundledInElectronPath = path.join(
++//         packagedAppPath,
++//         CONFIG.executableName
++//       );
++//     }
++//     childProcess.execFileSync(
++//       nodeBundledInElectronPath,
++//       [verifySnapshotScriptPath, snapshotScriptPath],
++//       { env: Object.assign({}, process.env, { ELECTRON_RUN_AS_NODE: 1 }) }
++//     );
++//
++//     console.log('Generating startup blob with mksnapshot');
++//     childProcess.spawnSync(process.execPath, [
++//       path.join(
++//         CONFIG.repositoryRootPath,
++//         'script',
++//         'node_modules',
++//         'electron-mksnapshot',
++//         'mksnapshot.js'
++//       ),
++//       snapshotScriptPath,
++//       '--output_dir',
++//       CONFIG.buildOutputPath
++//     ]);
++// 
++//     let startupBlobDestinationPath;
++//     if (process.platform === 'darwin') {
++//       startupBlobDestinationPath = `${packagedAppPath}/Contents/Frameworks/Electron Framework.framework/Resources`;
++//     } else {
++//       startupBlobDestinationPath = packagedAppPath;
++//     }
++// 
++//     const snapshotBinaries = ['v8_context_snapshot.bin', 'snapshot_blob.bin'];
++//     for (let snapshotBinary of snapshotBinaries) {
++//       const destinationPath = path.join(
++//         startupBlobDestinationPath,
++//         snapshotBinary
++//       );
++//       console.log(`Moving generated startup blob into "${destinationPath}"`);
++//       try {
++//         fs.unlinkSync(destinationPath);
++//       } catch (err) {
++//         // Doesn't matter if the file doesn't exist already
++//         if (!err.code || err.code !== 'ENOENT') {
++//           throw err;
++//         }
++//       }
++//       fs.renameSync(
++//         path.join(CONFIG.buildOutputPath, snapshotBinary),
++//         destinationPath
++//       );
++//     }
+   });
+ };

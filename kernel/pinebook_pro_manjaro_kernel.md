@@ -4,7 +4,7 @@
 
 Use the Linaro Arm GCC
 
-https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-a/downloads
+<https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-a/downloads>
 
 ```bash
 export WRKDIR=~/arm64/manjaro_kernel
@@ -14,11 +14,9 @@ pushd $WRKDIR
 popd
 ```
 
-
-
 ## Kernel
 
-https://gitlab.manjaro.org/tsys/linux-pinebook-pro
+<https://gitlab.manjaro.org/tsys/linux-pinebook-pro>
 
 ```bash
 export KERNEL_SOURCE=~/arm64/manjaro_kernel/src/linux-pinebook-pro
@@ -42,7 +40,6 @@ export TOPTS=+crypto+crc
 export TARCH=armv8-a
 ```
 
-
 ```bash
 pushd $KERNEL_SOURCE
   make mrproper
@@ -52,5 +49,3 @@ pushd $KERNEL_SOURCE
   make -j $NPROC $KERNEL_CONFIG binrpm-pkg
 popd
 ```
-
-

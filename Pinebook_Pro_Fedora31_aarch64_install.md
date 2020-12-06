@@ -20,7 +20,6 @@ md5sum fedora-pinebookpro-gnome-0.8.img.xz
 
 `454711034b4698c4312dd5f7b1dfcada  fedora-pinebookpro-gnome-0.8.img.xz`
 
-
 ## Sudo
 
 ```bash
@@ -75,7 +74,6 @@ sudo dnf install -y \
     p7zip
 ```
 
-
 ## Install golang
 
 ```bash
@@ -129,7 +127,6 @@ sudo dnf install -y python3-pyyaml \
 
 ## Install Docker
 
-
 ### Create a partition (optional)
 
 ```bash
@@ -142,13 +139,14 @@ lvcreate -L75GB -n docker fedora
 lsblk
 mkdir /var/lib/docker
 mkfs.ext4 /dev/mapper/fedora-docker
-echo "/dev/mapper/fedora-docker /var/lib/docker       ext4	defaults        0 0" >> /etc/fstab
+echo "/dev/mapper/fedora-docker /var/lib/docker       ext4 defaults        0 0" >> /etc/fstab
 mount /var/lib/docker/
 ```
 
 ### Temporary workaround CgroupsV2
 
-Not Working yet because image uses extlinux. Please Skip these steps until I have it working
+Not Working yet because image uses extlinux. Please Skip these steps until I
+have it working
 
 vi /boot/extlinux/extlinux.conf
 
@@ -180,7 +178,7 @@ sudo dnf install -y moby-engine
 sudo usermod -aG docker <user>
 ```
 
-Open docker daemon to tcp connections (Optional) 
+Open docker daemon to tcp connections (Optional)
 
 **USE AT OWN RISK** Insecure Silliness
 
@@ -283,7 +281,6 @@ EOF
 chmod +x ~/bin/format_python
 ```
 
-
 ## Remove Packagekit
 
 ```bash
@@ -300,7 +297,7 @@ sudo dnf remove PackageKit*
 sudo dnf install ostree gnome-initial-setup flatpak-libs efivar-libs appstream-data libxmlb fwupd
 ```
 
-# Install Codium
+## Install Codium
 
 ```bash
 sudo dnf install libXScrnSaver
@@ -322,5 +319,3 @@ sudo tar -C /usr/local/codium -xzvf VSCodium-linux-arm64-1.42.1.tar.gz
 cd /usr/local/bin
 sudo ln -sf ../codium/bin/codium .
 ```
-
-
