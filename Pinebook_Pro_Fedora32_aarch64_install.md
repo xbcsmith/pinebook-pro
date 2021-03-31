@@ -11,13 +11,15 @@ sudo dnf install  -y  \
     wget \
     dialog \
     libarchive \
-    qemu-user-static \ # (archlinux: binfmt-qemu-static)
+    qemu-user-static \ 
     openssl \
     gawk \
     polkit \
     dialog \
     bsdtar
 ```
+
+**note:** on archlinux: binfmt-qemu-static
 
 Clone and run the installer script
 
