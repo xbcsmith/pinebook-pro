@@ -4,6 +4,8 @@ pinebook pro scripts and configs
 
 ## Files
 
+- [Pinebook_Pro_Fedora_35_Dev_Machine](./Pinebook_Pro_Fedora_35_Dev_Machine.md)
+- [Pinebook Pro Fedora35 Aarch64 Install](./Pinebook_Pro_Fedora35_aarch64_install.md)
 - [Pinebook Pro Fedora32 Aarch64 Install](./Pinebook_Pro_Fedora32_aarch64_install.md)
 - [Pinebook Pro Fedora31 Aarch64 Install](./Pinebook_Pro_Fedora31_aarch64_install.md)
 - [Pinebook Pro Goland Install](./Pinebook_Pro_GoLand_install.md)
@@ -18,7 +20,7 @@ Build atom ide for aarch64
 
 ## Kernel
 
-Build custom kernel for the pienbook-pro
+Build custom kernel for the pinebook-pro
 
 - [Kernel](./kernel)
 
