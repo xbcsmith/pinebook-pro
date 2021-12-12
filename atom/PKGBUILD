@@ -27,7 +27,11 @@ prepare() {
     echo "installed electron version (ELECTRON_VERSION): $ELECTRON_VERSION"
 
     ATOM_RESOURCE_PATH="${PWD}"
+<<<<<<< Updated upstream
     
+=======
+
+>>>>>>> Stashed changes
     cd "$pkgname"
     git checkout tags/v${pkgver}
     patch -Np1 -i ../../bootstrap.patch
@@ -44,7 +48,11 @@ build() {
     rm -rf node_modules/github/node_modules
     rm -rf node_modules/github/node_modules.bak
     patch -Np1 -i ../../build.patch
+<<<<<<< Updated upstream
     
+=======
+
+>>>>>>> Stashed changes
     script/build
 }
 
@@ -74,3 +82,7 @@ package() {
 
 
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes

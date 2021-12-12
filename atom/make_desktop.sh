@@ -4,7 +4,7 @@ pkgname=atom
 pkgver=1.48.0
 pkgrel=1
 pkgdesc="The hackable text editor"
-pkgdir=${1:-/usr/local/share/applications/}
+pkgdir=${1:-/usr/local/share/applications}
 
 curl -kL -o atom_256.png https://github.com/atom/atom/raw/master/resources/app-icons/stable/png/256.png
 

@@ -11,6 +11,7 @@ Install Deps
 ```bash
 sudo dnf install -y \
     bash \
+    bsdtar \
     dialog \
     gawk \
     libarchive \
